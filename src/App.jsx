@@ -2,9 +2,9 @@ import "./App.css";
 
 function App() {
   const todoList = [
-    { id: 1, title: "review resources" },
-    { id: 2, title: "take notes" },
-    { id: 3, title: "code out app" },
+    { id: 1, title: "Review resources" },
+    { id: 2, title: "Take notes" },
+    { id: 3, title: "Code out app" },
   ];
 
   return (
