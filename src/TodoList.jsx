@@ -1,4 +1,4 @@
-const TodoList = () => {
+function TodoList() {
   const todoList = [
     { id: 1, title: "Review resources" },
     { id: 2, title: "Take notes" },
@@ -11,6 +11,6 @@ const TodoList = () => {
       ))}
     </ul>
   );
-};
+}
 
 export default TodoList;
