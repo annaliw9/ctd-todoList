@@ -1,4 +1,4 @@
-function TodoForm() {
+const TodoForm = () => {
   return (
     <form>
       <label htmlFor="todoTitle">Todo</label>
@@ -8,6 +8,6 @@ function TodoForm() {
       </button>
     </form>
   );
-}
+};
 
 export default TodoForm;

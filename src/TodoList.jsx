@@ -1,4 +1,4 @@
-function TodoList() {
+const TodoList = () => {
   const todoList = [
     { id: 1, title: "Review resources" },
     { id: 2, title: "Take notes" },
@@ -6,11 +6,9 @@ function TodoList() {
   ];
   return (
     <ul>
-      {todoList.map((todo) => (
-        <li key={todo.id}>{todo.title}</li>
-      ))}
+      {todoList && todoList.map((todo) => <li key={todo.id}>{todo.title}</li>)}
     </ul>
   );
-}
+};
 
 export default TodoList;
