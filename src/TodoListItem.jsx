@@ -3,7 +3,7 @@ function TodoListItem({ todo, onCompleteTodo }) {
     <li>
       <input
         type="checkbox"
-        checked={todo.isComplete}
+        checked={todo.isCompleted}
         onChange={() => onCompleteTodo(todo.id)}
       ></input>
       {todo.title}

@@ -10,7 +10,7 @@ function App() {
     const newTodo = {
       id: Date.now(),
       title: todoTitle,
-      isComplete: false,
+      isCompleted: false,
     };
     setTodoList((previous) => [newTodo, ...previous]);
   };
@@ -18,7 +18,7 @@ function App() {
   const completeTodo = (id) => {
     setTodoList((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, isComplete: true } : todo,
+        todo.id === id ? { ...todo, isCompleted: true } : todo,
       ),
     );
   };
