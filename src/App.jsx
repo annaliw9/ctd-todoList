@@ -25,7 +25,7 @@ function App() {
 
   const updateTodo = (editedTodo) => {
     const updatedTodos = todoList.map((todo) =>
-      todo.id === editedTodo.id ? editedTodo : todo,
+      todo.id === editedTodo.id ? { ...todo, title: editedTodo.title } : todo,
     );
     setTodoList(updatedTodos);
   };

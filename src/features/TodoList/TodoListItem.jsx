@@ -1,50 +1,50 @@
-// import { useState } from "react";
+import { useState } from "react";
 import TextInputWithLabel from "../../shared/TextInputWithLabel";
-import isValidTodoTitle from "../../utils/todoValidation";
-import useEditableTitle from "../../hooks/useEditableTitle";
+import { isValidTodoTitle } from "../../utils/todoValidation";
+// import useEditableTitle from "../../hooks/useEditableTitle";
 
 function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
-  // const [isEditing, setIsEditing] = useState(false);
-  // const [workingTitle, setWorkingTitle] = useState(todo.title);
-  const {
-    isEditing,
-    workingTitle,
-    startEditing,
-    cancelEdit,
-    updateTitle,
-    finishEdit,
-  } = useEditableTitle(todo.title);
-
-  // const handleCancel = () => {
-  //   setWorkingTitle(todo.title);
-  //   setIsEditing(false);
-  // };
-
-  // const handleEdit = (event) => {
-  //   setWorkingTitle(event.target.value);
-  // };
-
-  // const handleUpdate = (event) => {
-  //   if (!isEditing) return;
-  //   event.preventDefault();
-  //   onUpdateTodo({ ...todo, title: workingTitle });
-  //   setIsEditing(false);
-  // };
-
-  const handleEdit = (event) => {
-    updateTitle(event.target.value);
-  };
+  const [isEditing, setIsEditing] = useState(false);
+  const [workingTitle, setWorkingTitle] = useState(todo.title);
+  // const {
+  //   isEditing,
+  //   workingTitle,
+  //   startEditing,
+  //   cancelEdit,
+  //   updateTitle,
+  //   finishEdit,
+  // } = useEditableTitle(todo.title);
 
   const handleCancel = () => {
-    cancelEdit();
+    setWorkingTitle(todo.title);
+    setIsEditing(false);
+  };
+
+  const handleEdit = (event) => {
+    setWorkingTitle(event.target.value);
   };
 
   const handleUpdate = (event) => {
     if (!isEditing) return;
     event.preventDefault();
-    const finalTitle = finishEdit();
-    onUpdateTodo({ ...todo, title: finalTitle });
+    onUpdateTodo({ ...todo, title: workingTitle });
+    setIsEditing(false);
   };
+
+  // const handleEdit = (event) => {
+  //   updateTitle(event.target.value);
+  // };
+
+  // const handleCancel = () => {
+  //   cancelEdit();
+  // };
+
+  // const handleUpdate = (event) => {
+  //   if (isEditing === false) return;
+  //   event.preventDefault();
+  //   const finalTitle = finishEdit();
+  //   onUpdateTodo({ ...todo, title: finalTitle });
+  // };
 
   return (
     <li>
@@ -79,8 +79,8 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
                 onChange={() => onCompleteTodo(todo.id)}
               />
             </label>
-            {/* <span onClick={() => setIsEditing(true)}>{todo.title}</span> */}
-            <span onClick={startEditing}>{todo.title}</span>
+            <span onClick={() => setIsEditing(true)}>{todo.title}</span>
+            {/* <span onClick={startEditing}>{todo.title}</span> */}
           </>
         )}
       </form>
