@@ -7,7 +7,7 @@ function SortBy({
   return (
     <div>
       <div>
-        <label htmlFor="sort">Sort By</label>
+        <label htmlFor="sort">Sort by</label>
         <select
           id="sort"
           value={sortBy}
@@ -24,8 +24,8 @@ function SortBy({
           value={sortDirection}
           onChange={(e) => onSortDirectionChange(e.target.value)}
         >
-          <option value="descending">Descending</option>
-          <option value="ascending">Ascending</option>
+          <option value="desc">Descending</option>
+          <option value="asc">Ascending</option>
         </select>
       </div>
     </div>
