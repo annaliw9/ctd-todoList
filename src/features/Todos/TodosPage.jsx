@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList/TodoList";
-import SortBy from "../../shared/sortBy";
+import SortBy from "../../shared/SortBy";
 import useDebounce from "../../utils/useDebounce";
 import FilterInput from "../../shared/FilterInput";
 
@@ -16,11 +16,10 @@ function TodosPage({ token }) {
   const [dataVersion, setDataVersion] = useState(0);
   const [filterError, setFilterError] = useState("");
 
-  const invalidateCache = useCallback(
-    () => setDataVersion((prev) => prev + 1),
-    [],
-    console.log("Invalidating memo cache after todo mutation"),
-  );
+  const invalidateCache = useCallback(() => {
+    setDataVersion((prev) => prev + 1);
+    // console.log("Invalidating memo cache after todo mutation");
+  }, []);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -51,7 +50,6 @@ function TodosPage({ token }) {
           throw new Error("Failed to fetch todos");
         }
         setTodoList(data.tasks);
-        setFilterError("");
       } catch (error) {
         if (
           debouncedFilterTerm ||
@@ -65,6 +63,7 @@ function TodosPage({ token }) {
       } finally {
         setIsTodoListLoading(false);
       }
+      setFilterError("");
     };
     fetchTodos();
   }, [token, sortBy, sortDirection, debouncedFilterTerm]);
@@ -119,7 +118,6 @@ function TodosPage({ token }) {
         todo.id === id ? { ...todo, isCompleted: true } : todo,
       ),
     );
-    invalidateCache();
     try {
       const response = await fetch(`/api/tasks/${id}`, {
         method: "PATCH",
@@ -132,6 +130,7 @@ function TodosPage({ token }) {
           isCompleted: true,
         }),
       });
+      invalidateCache();
 
       if (!response.ok) {
         throw new Error("Failed to complete todo");
@@ -151,7 +150,6 @@ function TodosPage({ token }) {
     setTodoList((prev) =>
       prev.map((todo) => (todo.id === editedTodo.id ? editedTodo : todo)),
     );
-    invalidateCache();
 
     try {
       const response = await fetch(`/api/tasks/${editedTodo.id}`, {
@@ -166,7 +164,7 @@ function TodosPage({ token }) {
           isCompleted: editedTodo.isCompleted,
         }),
       });
-
+      invalidateCache();
       if (!response.ok) {
         throw new Error("Failed to update todo");
       }
