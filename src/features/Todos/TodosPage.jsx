@@ -43,6 +43,7 @@ function TodosPage({ token }) {
           credentials: "include",
         });
         const data = await response.json();
+
         if (response.status === 401) {
           throw new Error("unauthorized");
         }
@@ -50,6 +51,7 @@ function TodosPage({ token }) {
           throw new Error("Failed to fetch todos");
         }
         setTodoList(data.tasks);
+        setFilterError("");
       } catch (error) {
         if (
           debouncedFilterTerm ||
@@ -63,7 +65,6 @@ function TodosPage({ token }) {
       } finally {
         setIsTodoListLoading(false);
       }
-      setFilterError("");
     };
     fetchTodos();
   }, [token, sortBy, sortDirection, debouncedFilterTerm]);
@@ -203,8 +204,12 @@ function TodosPage({ token }) {
       {filterError && (
         <div>
           <p>{filterError}</p>
-          <button onClick={() => setFilterError("")}>Clear Filter Error</button>
-          <button onClick={handleReset}>Reset Filters</button>
+          <button type="button" onClick={() => setFilterError("")}>
+            Clear Filter Error
+          </button>
+          <button type="button" onClick={handleReset}>
+            Reset Filters
+          </button>
         </div>
       )}
       {isTodoListLoading && <p>Loading todos...</p>}
