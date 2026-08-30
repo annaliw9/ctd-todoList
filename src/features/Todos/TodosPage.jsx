@@ -49,11 +49,11 @@ function TodosPage() {
           credentials: "include",
         });
         const todos = await response.json();
-        console.log("RENDER STATE:", {
-          sortBy,
-          sortDirection,
-          todoList,
-        });
+        // console.log("RENDER STATE:", {
+        //   sortBy,
+        //   sortDirection,
+        //   todoList,
+        // });
 
         if (response.status === 401) {
           throw new Error("unauthorized");
