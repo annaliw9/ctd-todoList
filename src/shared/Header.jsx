@@ -6,7 +6,8 @@ function Header() {
 
   return (
     <header>
-      <h1>Todo App {isAuthenticated && <Logoff />}</h1>
+      <h1>Todo App</h1>
+      {isAuthenticated && <Logoff />}
     </header>
   );
 }

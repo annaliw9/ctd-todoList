@@ -67,10 +67,10 @@ function TodosPage() {
           type: TODO_ACTIONS.FETCH_ERROR,
           payload: {
             message: error.message,
-            isFiltering:
-              debouncedFilterTerm ||
-              sortBy !== "createdAt" ||
-              sortDirection !== "desc",
+            isFilterError: false,
+            //   debouncedFilterTerm ||
+            //   sortBy !== "createdAt" ||
+            //   sortDirection !== "asc",
           },
         });
       }

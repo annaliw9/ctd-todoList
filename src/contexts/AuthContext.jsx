@@ -63,14 +63,15 @@ export function AuthProvider({ children }) {
       if (!res.ok) {
         return {
           success: false,
-          error: "Logout failed",
+          error: "Logout request failed, but you have been logged out locally.",
         };
       }
       return { success: true };
     } catch (error) {
       return {
         success: false,
-        error: "Network error during logout",
+        error:
+          "Network error during logout, but you have been logged out locally.",
       };
     } finally {
       setEmail("");
