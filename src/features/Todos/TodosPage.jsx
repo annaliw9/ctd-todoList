@@ -48,12 +48,10 @@ function TodosPage() {
           },
           credentials: "include",
         });
-        const todos = await response.json();
-        // console.log("RENDER STATE:", {
-        //   sortBy,
-        //   sortDirection,
-        //   todoList,
-        // });
+        const data = await response.json();
+        console.log("Fetched todos:", data);
+        const todos = data.tasks;
+        // console.log("Fetched data:", todos);
 
         if (response.status === 401) {
           throw new Error("unauthorized");
@@ -61,16 +59,16 @@ function TodosPage() {
         if (!response.ok) {
           throw new Error("Failed to fetch todos");
         }
-        dispatch({ type: TODO_ACTIONS.FETCH_SUCCESS, payload: todos.tasks });
+        dispatch({ type: TODO_ACTIONS.FETCH_SUCCESS, payload: todos });
       } catch (error) {
         dispatch({
           type: TODO_ACTIONS.FETCH_ERROR,
           payload: {
             message: error.message,
-            isFilterError: false,
-            //   debouncedFilterTerm ||
-            //   sortBy !== "createdAt" ||
-            //   sortDirection !== "asc",
+            isFilterError:
+              debouncedFilterTerm ||
+              sortBy !== "createdAt" ||
+              sortDirection !== "asc",
           },
         });
       }
@@ -244,16 +242,13 @@ function TodosPage() {
         onSortByChange={(newSortBy) =>
           dispatch({
             type: TODO_ACTIONS.SET_SORT,
-            payload: { sortBy: newSortBy, sortDirection },
+            payload: { sortBy: newSortBy },
           })
         }
         onSortDirectionChange={(newSortDirection) =>
           dispatch({
             type: TODO_ACTIONS.SET_SORT,
-            payload: {
-              sortBy,
-              sortDirection: newSortDirection,
-            },
+            payload: { sortDirection: newSortDirection },
           })
         }
       />

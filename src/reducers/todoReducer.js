@@ -58,15 +58,19 @@ export function todoReducer(state, action) {
         filterError: "",
       };
     case TODO_ACTIONS.FETCH_ERROR:
+      if (action.payload.isFilterError) {
+        return {
+          ...state,
+          isTodoListLoading: false,
+          filterError: `Error filtering/sorting todos: ${action.payload.message}`,
+          error: "",
+        };
+      }
       return {
         ...state,
         isTodoListLoading: false,
-        error: action.payload.isFilterError
-          ? ""
-          : `Error fetching todos: ${action.payload.message}`,
-        filterError: action.payload.isFilterError
-          ? `Error filtering/sorting todos: ${action.payload.message}`
-          : "",
+        error: `Error fetching todos: ${action.payload.message}`,
+        filterError: "",
       };
 
     //ADD TODO
@@ -144,11 +148,17 @@ export function todoReducer(state, action) {
         error: action.payload.error,
       };
 
+    // case TODO_ACTIONS.SET_SORT:
+    //   return {
+    //     ...state,
+    //     sortBy: action.payload.sortBy,
+    //     sortDirection: action.payload.sortDirection,
+    //   };
     case TODO_ACTIONS.SET_SORT:
       return {
         ...state,
-        sortBy: action.payload.sortBy,
-        sortDirection: action.payload.sortDirection,
+        sortBy: action.payload.sortBy ?? state.sortBy,
+        sortDirection: action.payload.sortDirection ?? state.sortDirection,
       };
 
     case TODO_ACTIONS.SET_FILTER:
