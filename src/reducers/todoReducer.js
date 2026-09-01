@@ -39,7 +39,7 @@ export const initialTodoState = {
 };
 
 export function todoReducer(state, action) {
-  console.log("Dispatched action:", action.type, action.payload);
+  // console.log("Dispatched action:", action.type, action.payload);
   switch (action.type) {
     //FETCH TODO
     case TODO_ACTIONS.FETCH_START:
@@ -56,6 +56,7 @@ export function todoReducer(state, action) {
         isTodoListLoading: false,
         error: "",
         filterError: "",
+        dataVersion: state.dataVersion + 1,
       };
     case TODO_ACTIONS.FETCH_ERROR:
       if (action.payload.isFilterError) {
@@ -148,17 +149,11 @@ export function todoReducer(state, action) {
         error: action.payload.error,
       };
 
-    // case TODO_ACTIONS.SET_SORT:
-    //   return {
-    //     ...state,
-    //     sortBy: action.payload.sortBy,
-    //     sortDirection: action.payload.sortDirection,
-    //   };
     case TODO_ACTIONS.SET_SORT:
       return {
         ...state,
-        sortBy: action.payload.sortBy ?? state.sortBy,
-        sortDirection: action.payload.sortDirection ?? state.sortDirection,
+        sortBy: action.payload.sortBy,
+        sortDirection: action.payload.sortDirection,
       };
 
     case TODO_ACTIONS.SET_FILTER:
@@ -185,6 +180,7 @@ export function todoReducer(state, action) {
         sortBy: "createdAt",
         sortDirection: "asc",
         filterTerm: "",
+        error: "",
         filterError: "",
       };
 

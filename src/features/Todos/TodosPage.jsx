@@ -49,7 +49,7 @@ function TodosPage() {
           credentials: "include",
         });
         const data = await response.json();
-        console.log("Fetched todos:", data);
+        // console.log("Fetched todos:", data);
         const todos = data.tasks;
         // console.log("Fetched data:", todos);
 
@@ -242,13 +242,19 @@ function TodosPage() {
         onSortByChange={(newSortBy) =>
           dispatch({
             type: TODO_ACTIONS.SET_SORT,
-            payload: { sortBy: newSortBy },
+            payload: {
+              sortBy: newSortBy,
+              sortDirection,
+            },
           })
         }
         onSortDirectionChange={(newSortDirection) =>
           dispatch({
             type: TODO_ACTIONS.SET_SORT,
-            payload: { sortDirection: newSortDirection },
+            payload: {
+              sortBy,
+              sortDirection: newSortDirection,
+            },
           })
         }
       />
