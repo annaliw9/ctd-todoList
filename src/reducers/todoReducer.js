@@ -52,7 +52,7 @@ export function todoReducer(state, action) {
     case TODO_ACTIONS.FETCH_SUCCESS:
       return {
         ...state,
-        todoList: action.payload,
+        todoList: action.payload.todos,
         isTodoListLoading: false,
         error: "",
         filterError: "",
@@ -88,8 +88,10 @@ export function todoReducer(state, action) {
         todoList: state.todoList.map((todo) =>
           todo.id === action.payload.tempId ? action.payload.savedTodo : todo,
         ),
+        error: "",
         dataVersion: state.dataVersion + 1,
       };
+    // API failed -> rollback
     case TODO_ACTIONS.ADD_TODO_ERROR:
       return {
         ...state,
@@ -107,10 +109,11 @@ export function todoReducer(state, action) {
         todoList: state.todoList.map((todo) =>
           todo.id === action.payload.id ? { ...todo, isCompleted: true } : todo,
         ),
+        error: "",
       };
 
     case TODO_ACTIONS.COMPLETE_TODO_SUCCESS:
-      return { ...state, dataVersion: state.dataVersion + 1 };
+      return { ...state, error: "", dataVersion: state.dataVersion + 1 };
 
     // API failed -> rollback
     case TODO_ACTIONS.COMPLETE_TODO_ERROR:
@@ -131,11 +134,13 @@ export function todoReducer(state, action) {
             ? action.payload.editedTodo
             : todo,
         ),
+        error: "",
       };
 
     case TODO_ACTIONS.UPDATE_TODO_SUCCESS:
       return {
         ...state,
+        error: "",
         dataVersion: state.dataVersion + 1,
       };
 
@@ -154,12 +159,14 @@ export function todoReducer(state, action) {
         ...state,
         sortBy: action.payload.sortBy,
         sortDirection: action.payload.sortDirection,
+        filterError: "",
       };
 
     case TODO_ACTIONS.SET_FILTER:
       return {
         ...state,
         filterTerm: action.payload,
+        filterError: "",
       };
 
     case TODO_ACTIONS.CLEAR_ERROR:

@@ -49,9 +49,6 @@ function TodosPage() {
           credentials: "include",
         });
         const data = await response.json();
-        // console.log("Fetched todos:", data);
-        const todos = data.tasks;
-        // console.log("Fetched data:", todos);
 
         if (response.status === 401) {
           throw new Error("unauthorized");
@@ -59,7 +56,10 @@ function TodosPage() {
         if (!response.ok) {
           throw new Error("Failed to fetch todos");
         }
-        dispatch({ type: TODO_ACTIONS.FETCH_SUCCESS, payload: todos });
+        dispatch({
+          type: TODO_ACTIONS.FETCH_SUCCESS,
+          payload: { todos: data.tasks },
+        });
       } catch (error) {
         dispatch({
           type: TODO_ACTIONS.FETCH_ERROR,

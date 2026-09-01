@@ -70,8 +70,8 @@ export function AuthProvider({ children }) {
     } catch (error) {
       return {
         success: false,
-        error:
-          "Network error during logout, but you have been logged out locally.",
+        error: error.message,
+        // "Network error during logout, but you have been logged out locally.",
       };
     } finally {
       setEmail("");
