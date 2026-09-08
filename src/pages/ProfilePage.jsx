@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
 function ProfilePage() {
-  const { email, token, isAuthenticated } = useAuth();
+  const { name, token, isAuthenticated } = useAuth();
 
   const [todoStats, setTodoStats] = useState({
     total: 0,
@@ -41,9 +41,9 @@ function ProfilePage() {
         }
 
         const data = await response.json();
-        console.log("Todo data:", data);
+        // console.log("Todo data:", data);
         const todos = data.tasks || [];
-        console.log("Data tasks", todos);
+        // console.log("Data tasks", todos);
 
         // Calculate statistics
         const total = todos.length;
@@ -73,7 +73,7 @@ function ProfilePage() {
       <section>
         <h2>User Information</h2>
         <p>
-          <strong>Name:</strong> {email}
+          <strong>Name:</strong> {name}
         </p>
       </section>
       <p>

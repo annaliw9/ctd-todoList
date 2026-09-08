@@ -10,7 +10,6 @@ import RequireAuth from "./components/RequireAuth";
 import Header from "./shared/Header";
 
 function App() {
-  // console.log("App rendered");
   return (
     <>
       <Header />
