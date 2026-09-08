@@ -41,7 +41,9 @@ function ProfilePage() {
         }
 
         const data = await response.json();
-        const todos = data.tasks;
+        console.log("Todo data:", data);
+        const todos = data.tasks || [];
+        console.log("Data tasks", todos);
 
         // Calculate statistics
         const total = todos.length;
