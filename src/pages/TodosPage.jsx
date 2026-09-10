@@ -41,6 +41,7 @@ function TodosPage() {
         const paramsObject = {
           sortBy,
           sortDirection,
+          limit: 50,
         };
 
         //if debouncedFilterTerm has a value, add the find property to the object:

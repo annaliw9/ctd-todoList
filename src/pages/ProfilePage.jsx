@@ -30,7 +30,7 @@ function ProfilePage() {
           credentials: "include",
         };
 
-        const response = await fetch("/api/tasks", options);
+        const response = await fetch("/api/tasks?limit=50", options);
 
         if (response.status === 401) {
           throw new Error("Unauthorized");
@@ -40,10 +40,7 @@ function ProfilePage() {
           throw new Error("Failed to fetch todos");
         }
 
-        const data = await response.json();
-        // console.log("Todo data:", data);
-        const todos = data.tasks || [];
-        // console.log("Data tasks", todos);
+        const { tasks: todos } = await response.json();
 
         // Calculate statistics
         const total = todos.length;
