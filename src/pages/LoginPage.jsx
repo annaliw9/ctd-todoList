@@ -20,22 +20,36 @@ function LoginPage() {
     }
   }, [isAuthenticated, navigate, from]);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setAuthError("");
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+  //   setAuthError("");
+  //   setIsLoggingOn(true);
+
+  //   try {
+  //     const result = await login(email, password);
+
+  //     if (result.success) {
+  //       navigate(from, { replace: true });
+  //     } else if (!result.success) setAuthError(result.error);
+  //   } catch (error) {
+  //     setAuthError(`Error: ${error.name} | ${error.message}`);
+  //   } finally {
+  //     setIsLoggingOn(false);
+  //   }
+  // }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
     setIsLoggingOn(true);
+    setAuthError("");
 
-    try {
-      const result = await login(email, password);
+    const result = await login(email, password);
 
-      if (result.success) {
-        navigate(from, { replace: true });
-      } else if (!result.success) setAuthError(result.error);
-    } catch (error) {
-      setAuthError(`Error: ${error.name} | ${error.message}`);
-    } finally {
-      setIsLoggingOn(false);
+    if (!result.success) {
+      setAuthError(result.error || "Authentication failed");
     }
+
+    setIsLoggingOn(false);
   }
 
   return (
