@@ -12,6 +12,8 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+  const [name, setName] = useState("");
+
   const [email, setEmail] = useState("");
   const [token, setToken] = useState("");
 
@@ -25,9 +27,10 @@ export function AuthProvider({ children }) {
       };
       const res = await fetch("/api/users/logon", options);
       const data = await res.json();
-      if (res.status === 200 && data.name && data.csrfToken) {
+      if (res.status === 200 && data.email && data.csrfToken) {
         // Success: Update state
-        setEmail(data.name);
+        setName(data.name);
+        setEmail(data.email);
         setToken(data.csrfToken);
         return { success: true };
       } else {
@@ -47,6 +50,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     if (!token) {
+      setName("");
       setEmail("");
       setToken("");
       return { success: true };
@@ -71,15 +75,15 @@ export function AuthProvider({ children }) {
       return {
         success: false,
         error: error.message,
-        // "Network error during logout, but you have been logged out locally.",
       };
     } finally {
+      setName("");
       setEmail("");
       setToken("");
     }
   };
 
-  const value = { email, token, isAuthenticated: !!token, login, logout };
+  const value = { name, email, token, isAuthenticated: !!token, login, logout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
