@@ -215,6 +215,6 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-**GitHub:** <annaliw9>(https://github.com/annaliw9)
+**GitHub:** annaliw9 (https://github.com/annaliw9)
 
-**Portfolio:** <Shuna Li>(https://shuna-portfolio.vercel.app/)
+**Portfolio:** Shuna Li (https://shuna-portfolio.vercel.app/)
