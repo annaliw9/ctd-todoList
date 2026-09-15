@@ -1,0 +1,170 @@
+.todosPage {
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Error messages */
+.error,
+.filterError {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.error {
+  border: 1px solid var(--color-danger);
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+.filterError {
+  border: 1px solid var(--color-warning);
+  background-color: var(--color-warning-light);
+  color: var(--color-text);
+}
+
+.error p,
+.filterError p {
+  margin: 0;
+}
+
+.errorButton,
+.secondaryButton {
+  flex-shrink: 0;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.errorButton {
+  background-color: var(--color-danger);
+  color: var(--color-surface);
+}
+
+.errorButton:hover {
+  opacity: 0.9;
+}
+
+.secondaryButton {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.secondaryButton:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.errorActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Controls */
+.controls {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.controlHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  color: var(--color-text);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.loading {
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.filterRow {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: end;
+  gap: 1rem;
+}
+
+.control {
+  min-width: 10rem;
+}
+
+.search {
+  min-width: 0;
+}
+
+/* Todo section */
+.todoSection {
+  padding: 1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.todoHeader {
+  margin-bottom: 1rem;
+}
+
+.form {
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 48rem) {
+  .filterRow {
+    grid-template-columns: 1fr;
+  }
+
+  .control {
+    width: 100%;
+  }
+
+  .error,
+  .filterError {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .errorActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .errorButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}

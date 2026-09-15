@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
 
+import styles from "./Logoff.module.css";
+
 function Logoff() {
   const { logout } = useAuth();
 
@@ -18,21 +20,31 @@ function Logoff() {
 
       if (result.success) {
         navigate("/login");
-      } else if (!result.success) {
+      } else {
         setAuthError(result.error);
       }
     } catch (error) {
-      setAuthError(`Error: ${error.name} | ${error.message}`);
+      setAuthError("Unable to log out. Please try again.");
     } finally {
       setIsLoggingOff(false);
     }
   };
 
   return (
-    <div>
-      {authError && <p>{authError}</p>}
-      <button type="button" onClick={handleLogout} disabled={isLoggingOff}>
-        {isLoggingOff ? "Logging out..." : "Logout"}
+    <div className={styles.container}>
+      {authError && (
+        <p className={styles.error} role="alert">
+          {authError}
+        </p>
+      )}
+
+      <button
+        type="button"
+        onClick={handleLogout}
+        disabled={isLoggingOff}
+        className={styles.button}
+      >
+        {isLoggingOff ? "Logging out..." : "Log Out"}
       </button>
     </div>
   );

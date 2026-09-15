@@ -1,35 +1,52 @@
 import { Link } from "react-router";
+import styles from "./NotFoundPage.module.css";
 
 function NotFoundPage() {
   return (
-    <div>
-      <h2>404 - Page Not Found</h2>
+    <div className={styles.page}>
+      <div className={styles.card}>
+        <p className={styles.code}>404</p>
 
-      <p>Sorry, the page you are looking for does not exist.</p>
+        <h2 className={styles.title}>Page Not Found</h2>
 
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
+        <p className={styles.message}>
+          Sorry, the page you are looking for does not exist.
+        </p>
 
-          <li>
-            <Link to="/about">About</Link>
-          </li>
+        <nav className={styles.navigation} aria-label="Page navigation">
+          <ul className={styles.navList}>
+            <li>
+              <Link className={styles.link} to="/">
+                Home
+              </Link>
+            </li>
 
-          <li>
-            <Link to="/todos">Todos</Link>
-          </li>
+            <li>
+              <Link className={styles.link} to="/about">
+                About
+              </Link>
+            </li>
 
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
+            <li>
+              <Link className={styles.link} to="/todos">
+                Todos
+              </Link>
+            </li>
 
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
-      </nav>
+            <li>
+              <Link className={styles.link} to="/profile">
+                Profile
+              </Link>
+            </li>
+
+            <li>
+              <Link className={styles.link} to="/login">
+                Login
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 }

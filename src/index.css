@@ -1,0 +1,68 @@
+:root {
+  --color-primary: #5762d5;
+  --color-primary-dark: #414bb5;
+  --color-primary-light: #e6e8ff;
+
+  --color-secondary: #6b7280;
+  --color-secondary-dark: #4b5563;
+  --color-secondary-light: #f1f3f7;
+
+  --color-accent: #a855c8;
+  --color-accent-light: #f5e8fa;
+
+  --color-success: #22a06b;
+  --color-success-light: #e3f6ed;
+
+  --color-danger: #dc5a5a;
+  --color-danger-light: #fdeaea;
+
+  --color-warning: #e59b3a;
+  --color-warning-light: #fff4df;
+
+  --color-background: #f7f8fc;
+  --color-surface: #ffffff;
+  --color-border: #e3e5ef;
+
+  --color-text: #25263a;
+  --color-text-secondary: #6b6d82;
+  --color-text-light: #9a9cad;
+
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--color-text);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  min-width: 320px;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}

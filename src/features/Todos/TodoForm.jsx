@@ -1,35 +1,64 @@
 import { useState } from "react";
 import TextInputWithLabel from "../../shared/TextInputWithLabel";
-import { isValidTodoTitle } from "../../utils/todoValidation";
+import {
+  isValidTodoTitle,
+  validateTodoTitle,
+} from "../../utils/todoValidation";
+import styles from "./TodoForm.module.css";
 
 function TodoForm({ onAddTodo }) {
-  // const inputRef = useRef();
   const [workingTodoTitle, setWorkingTodoTitle] = useState("");
+  const [validationError, setValidationError] = useState("");
+
+  const handleTitleChange = (event) => {
+    const value = event.target.value;
+
+    setWorkingTodoTitle(value);
+
+    if (validationError) {
+      setValidationError("");
+    }
+  };
 
   const handleAddTodo = (event) => {
     event.preventDefault();
-    // Explore the event object (we'll remove this later)
-    // console.log("Event object:", event);
-    // console.log("Event target:", event.target);
-    // console.log("Input value:", event.target.todoTitle.value);
-    onAddTodo(workingTodoTitle);
 
-    // console.log(workingTodoTitle);
+    const error = validateTodoTitle(workingTodoTitle);
 
+    if (error) {
+      setValidationError(error);
+      return;
+    }
+
+    onAddTodo(workingTodoTitle.trim());
     setWorkingTodoTitle("");
+    setValidationError("");
   };
 
-  // console.log(workingTodoTitle);
-
   return (
-    <form onSubmit={handleAddTodo}>
-      <TextInputWithLabel
-        elementId="todoTitle"
-        labelText="Todo"
-        value={workingTodoTitle}
-        onChange={(event) => setWorkingTodoTitle(event.target.value)}
-      />
-      <button type="submit" disabled={!isValidTodoTitle(workingTodoTitle)}>
+    <form className={styles.form} onSubmit={handleAddTodo} noValidate>
+      <div className={styles.inputWrapper}>
+        <TextInputWithLabel
+          elementId="todoTitle"
+          labelText="Todo"
+          value={workingTodoTitle}
+          onChange={handleTitleChange}
+          maxLength={100}
+          required
+        />
+
+        {validationError && (
+          <p className={styles.error} role="alert">
+            {validationError}
+          </p>
+        )}
+      </div>
+
+      <button
+        className={styles.button}
+        type="submit"
+        disabled={!isValidTodoTitle(workingTodoTitle)}
+      >
         Add Todo
       </button>
     </form>
