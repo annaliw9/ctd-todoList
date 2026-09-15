@@ -1,41 +1,3 @@
-<!-- # Todo List App
-
-A lightweight to-do list app that displays your tasks in a clean and organized list.
-
-## Installation
-
-### 1. Download the project or clone the project using
-
-```bash
-git clone https://github.com/annaliw9/ctd-todoList.git
-```
-
-### 2. Navigate into the project in your IDE
-
-```bash
-cd ctd-todoList
-```
-
-### 3. Install the dependencies
-
-```bash
-npm install
-```
-
-## Run the development server
-
-```bash
-npm run dev
-```
-
----
-
-## Author
-
-Shuna Li
-
-GitHub: https://github.com/annaliw9 -->
-
 # Todo App
 
 A responsive Todo application built with React and Vite that helps users create, manage, organize, and track their daily tasks.
@@ -127,13 +89,13 @@ git --version
 1. Clone the repository:
 
 ```bash
-git clone <https://github.com/annaliw9/ctd-todoList.git>
+git clone https://github.com/annaliw9/ctd-todoList.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd <ctd-todoList>
+cd ctd-todoList
 ```
 
 3. Install dependencies:
@@ -253,6 +215,6 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-**GitHub:** [<annaliw9>](https://github.com/annaliw9)
+**GitHub:** <annaliw9>(https://github.com/annaliw9)
 
-**Portfolio:** [<Shuna Li>](https://shuna-portfolio.vercel.app/)
+**Portfolio:** <Shuna Li>(https://shuna-portfolio.vercel.app/)
