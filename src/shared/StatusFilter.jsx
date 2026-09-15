@@ -1,7 +1,9 @@
 import { useSearchParams } from "react-router";
+import styles from "./FormField.module.css";
 
 function StatusFilter() {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const currentStatus = searchParams.get("status") || "all";
 
   const handleStatusChange = (status) => {
@@ -17,10 +19,14 @@ function StatusFilter() {
   };
 
   return (
-    <div>
-      <label htmlFor="statusFilter">Show:</label>
+    <div className={styles.field}>
+      <label htmlFor="statusFilter" className={styles.label}>
+        Show
+      </label>
+
       <select
         id="statusFilter"
+        className={styles.select}
         value={currentStatus}
         onChange={(e) => handleStatusChange(e.target.value)}
       >
