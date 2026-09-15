@@ -4,7 +4,7 @@ A responsive Todo application built with React and Vite that helps users create,
 
 ## Live Demo
 
-[View Live Demo](YOUR_DEPLOYED_APP_URL)
+[View Live Demo](https://ctd-todo-list-topaz.vercel.app/login)
 
 ## Features
 
