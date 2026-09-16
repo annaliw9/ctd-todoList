@@ -17,7 +17,7 @@ function AboutPage() {
           <ul className={styles.list}>
             <li>Add new tasks</li>
             <li>Mark tasks as completed</li>
-            <li>Edit and delete tasks</li>
+            <li>Edit and update tasks</li>
             <li>Filter and organize your tasks</li>
             <li>Navigate between different pages</li>
           </ul>
